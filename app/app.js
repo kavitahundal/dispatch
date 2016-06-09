@@ -1,14 +1,43 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/view1'});
+var dispatch = angular.module('dispatch', ['ui.router', 'ngAnimate']).
+		config(['$stateProvider', '$urlRouterProvider', 
+        function($stateProvider, $urlRouterProvider) {
+	 
+	  	$urlRouterProvider.otherwise('main');
+	      $stateProvider.state({
+	              name: 'main',
+	              url: '/main',
+	              templateUrl: 'main-page/main.html',
+	              controller: 'mainController',
+	              controllerAs: 'vm'
+	          }).state({
+	          	name:'login',
+	          	url: '/login',
+	          	templateUrl: 'login/login.html',
+	          	controller: 'loginController',
+	          	controllerAs: 'loginCtrl'
+	          }).state({
+	          	name:'login.profile',
+	          	url:'/profile',
+	          	templateUrl: 'login/profile.html'
+	          })				
+	          .state({
+	          	name:'login.info',
+	          	url:'/info',
+	          	templateUrl: 'login/info.html'
+	          })
+	          // url will be /form/interests
+	          .state({
+	          	name:'login.interests',
+	              url: '/interests',
+	              templateUrl: 'login/form-interests.html'
+	          })
+	          .state({             // url will be /form/payment
+	          	name:'login.payment', 
+	              url: '/payment',
+	              templateUrl: 'login/form-payment.html'
+	          });
+	  
 }]);
