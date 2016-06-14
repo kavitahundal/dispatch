@@ -42,7 +42,6 @@ var dispatch = angular.module('dispatch', ['ui.router', 'ngAnimate']).
 	        	  name:'Register',
 	        	  url: '/register',
 	        	  controller:'RegisterController',
-	        	  templateUrl:'register/register.html',
-	        	  controllerAs: 'vm'
+	        	  templateUrl:'register/register.html'
 	          });
 }]);
